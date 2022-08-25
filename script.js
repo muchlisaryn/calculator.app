@@ -3,6 +3,7 @@ const operators = document.querySelectorAll('.operator')
 const numbers =  document.querySelectorAll ('.number')
 const equalSign = document.querySelector ('.equal-sign')
 const clearBtn = document.querySelector('.all-clear')
+const delBtn = document.querySelector('.del')
 const decimal = document.querySelector('.decimal')
 
 let prevNumber = ''
@@ -15,8 +16,11 @@ const calculate = () => {
         case '+':
             result = parseFloat(prevNumber) + parseFloat(currentNumber)
             break
-        case ':':
+        case '-':
             result = parseFloat(prevNumber) - parseFloat(currentNumber)
+            break
+        case '.':
+            result = parseFloat(prevNumber) / parseFloat(currentNumber)
             break
         case "*":
             result = parseFloat(prevNumber) * parseFloat(currentNumber)
@@ -31,8 +35,8 @@ const calculate = () => {
     calculationOperator = ''
 }
 
-const updateScreen = (number) => {
-    calculatorScreen.value = number
+const updateScreen = (operator) => {
+    calculatorScreen.value = operator
 }
 
 const inputNumber = (number) => {
@@ -54,7 +58,7 @@ const inputOperator = (operator) => {
     if (calculationOperator === '') {
         prevNumber = currentNumber
     }
-    calculationOperator = operator
+    calculationOperator += operator
     currentNumber = ''
 }
 
@@ -71,9 +75,21 @@ const clearAll = () => {
     currentNumber = '0'
 }
 
+const del = () => {
+    prevNumber = '0'
+    currentNumber = '0'
+    calculationOperator = ''
+}
+
+delBtn.addEventListener('click', () => {
+    clearAll()
+    updateScreen(currentNumber)
+})
+
 operators.forEach((operator) => {
     operator.addEventListener("click",(event) => {
         inputOperator(event.target.value)
+        updateScreen(calculationOperator)
     })
 })
 

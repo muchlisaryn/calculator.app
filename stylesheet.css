@@ -24,15 +24,7 @@
     display: flex;
 }
 button:hover {
-    background-color: rgb(37, 37, 37);
-}
-
-.operator:hover, .equal-sign:hover {
-    background-color: darkorange;
-}
-
-.operator, .equal-sign {
-    background-color: orange;
+    background-color: orangered;
 }
 
 button {
@@ -45,6 +37,6 @@ button {
     outline: none;
 }
 
-.all-clear, .zero-btn {
+.zero-btn {
     width: 50%;
 }
